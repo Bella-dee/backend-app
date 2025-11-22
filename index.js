@@ -1,8 +1,11 @@
 import express from "express";
 import routes from "./Routes/index.js";
+import { connectDB } from "./config/db.js";
 
 const PORT = 8000;
 const app = express();
+
+connectDB()
 
 app.use(express.json());
 
@@ -18,7 +21,7 @@ app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });
 
-// Service ====> Controller ===> Route ===> App
+// DB ===> Service ====> Controller ===> Route ===> App 
 
 // Service is the business logic of the app
 // Controller is the middleman between the service and the route. It handles the request and response. Also a subroute of the route

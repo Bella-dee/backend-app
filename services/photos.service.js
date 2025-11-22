@@ -1,11 +1,9 @@
 export const getPhotos = async (req, res) => {
   const id = req.params?.id;
   try {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/photos`
-    );
+    const response = await fetch(`https://jsonplaceholder.typicode.com/photos`);
     const data = await response.json();
-console.log(data)
+    console.log(data);
     return res.status(200).json({
       sucess: true,
       message: " photos fetched successfully",
@@ -20,25 +18,25 @@ console.log(data)
   }
 };
 
-export const getPhotoTitle = async (req,res) => {
+export const getPhotoTitle = async (req, res) => {
   const id = req.params.id;
 
   const response = await fetch(
-     `https://jsonplaceholder.typicode.com/photos/${id}`
+    `https://jsonplaceholder.typicode.com/photos/${id}`
   );
   const data = await response.json();
 
   return res.status(200).json({
-    success : true,
-    message : "photo titles details fetched successfully",
-    photo : {
-     id : data?.id,
-     title : data?.title,
+    success: true,
+    message: "photo titles details fetched successfully",
+    photo: {
+      id: data?.id,
+      title: data?.title,
     },
   });
 };
 
-export const getPhotoUrl = async (req,res) => {
+export const getPhotoUrl = async (req, res) => {
   const id = req.params?.id;
 
   const response = await fetch(
@@ -47,30 +45,29 @@ export const getPhotoUrl = async (req,res) => {
   const data = await response.json();
 
   return res.status(200).json({
-    success : true,
-    message : "photo url details fetched successfully",
-    photo : {
-      id : data?.id,
+    success: true,
+    message: "photo url details fetched successfully",
+    photo: {
+      id: data?.id,
       url: data?.url,
     },
   });
 };
 
-
-export const getThumbNailUrl = async (req,res) => {
+export const getThumbNailUrl = async (req, res) => {
   const id = req.params?.id;
 
   const response = await fetch(
-    `https://jsonplaceholder.typicode.com/photos/${id}`   
+    `https://jsonplaceholder.typicode.com/photos/${id}`
   );
   const data = await response.json();
 
   return res.status(200).json({
-    success : true,
-  message : "Thumb nail url fetched successfully",
-photo : {
-  id : data?.id,
-  thumbnailUrl : data?.thumbnailUrl,
-},
+    success: true,
+    message: "Thumb nail url fetched successfully",
+    photo: {
+      id: data?.id,
+      thumbnailUrl: data?.thumbnailUrl,
+    },
   });
 };

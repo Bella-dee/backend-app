@@ -52,7 +52,7 @@ export const getCommentEmail = async (req, res) => {
   console.log(data);
   return res.status(200).json({
     sucess: true,
-    message: "user comment email successfully fetched",
+    message: " comment email successfully fetched",
     comment: {
       id: data?.id,
       email: data?.email,
@@ -60,21 +60,20 @@ export const getCommentEmail = async (req, res) => {
   });
 };
 
+export const getCommentBody = async (req, res) => {
+  const id = req.params.id;
 
-export const getCommentBody = async (req,res) => {
-    const id = req.params.id;
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/comments/${id}`
+  );
+  const data = await response.json();
 
-    const response = await fetch(
-    `https://jsonplaceholder.typicode.com/comments/${id}`    
-    );
-    const data = await response.json();
-
-    return res.status(200).json({
-        sucess : true,
-    message : " comment body successfully fetched",
-    comment : {
-        id: data?.id,
-        comment : data?.body,
+  return res.status(200).json({
+    sucess: true,
+    message: " comment body successfully fetched",
+    comment: {
+      id: data?.id,
+      comment: data?.body,
     },
-    });
+  });
 };

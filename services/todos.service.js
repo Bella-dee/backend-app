@@ -17,6 +17,8 @@ export const getTodos = async (req, res) => {
   }
 };
 
+
+
 export const getTodosTitle = async (req, res) => {
   const id = req.params?.id;
 
@@ -53,3 +55,4 @@ export const getTodosCompleted = async (req, res) => {
     },
   });
 };
+
