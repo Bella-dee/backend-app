@@ -26,6 +26,9 @@ const houseSchema = new Schema({
   numberOfOccupants: {
     type: String,
   },
+  createdAt: {
+    type: String,
+  },
 owner: {
     type: Schema.Types.ObjectId,
     ref: "User"

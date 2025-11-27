@@ -29,6 +29,10 @@
       "description": "Vehicle Endpoints"
     },
     {
+      "name": "House",
+      "description": "House Endpoints"
+    },
+    {
       "name": "Shoe Collection",
       "description": "Shoe Collection Endpoints"
     }
@@ -1489,6 +1493,321 @@
           }
         }
       }
+    },
+    "/house/create-house": {
+      "post": {
+        "tags": [
+          "House"
+        ],
+        "summary": "Create a new House.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/createHouseModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "House created successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "House created successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "houseNumber": {
+                    "example": "any"
+                  },
+                  "street": {
+                    "example": "any"
+                  },
+                  "city": {
+                    "example": "any"
+                  },
+                  "state": {
+                    "example": "any"
+                  },
+                  "country": {
+                    "example": "any"
+                  },
+                  "houseType": {
+                    "example": "any"
+                  },
+                  "numberOfOccupants": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/house/get-all-house": {
+      "get": {
+        "tags": [
+          "House"
+        ],
+        "summary": "Get all house.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "House data fetched successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "example": [],
+                      "items": {}
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "House data fetched successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "example": [],
+                      "items": {}
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/house/update-house": {
+      "patch": {
+        "tags": [
+          "House"
+        ],
+        "summary": "Update a house.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UpdateHouseModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "House updated successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "House updated successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "houseNumber": {
+                    "example": "any"
+                  },
+                  "street": {
+                    "example": "any"
+                  },
+                  "city": {
+                    "example": "any"
+                  },
+                  "state": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/house/delete-house": {
+      "delete": {
+        "tags": [
+          "House"
+        ],
+        "summary": "Delete a house.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "houseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "House deleted successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "House deleted successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1716,6 +2035,81 @@
         ],
         "xml": {
           "name": "updateVehicleModel"
+        }
+      },
+      "createHouseModel": {
+        "type": "object",
+        "properties": {
+          "houseNumber": {
+            "type": "string",
+            "example": ""
+          },
+          "street": {
+            "type": "string",
+            "example": ""
+          },
+          "city": {
+            "type": "string",
+            "example": ""
+          },
+          "state": {
+            "type": "string",
+            "example": ""
+          },
+          "country": {
+            "type": "string",
+            "example": ""
+          },
+          "houseType": {
+            "type": "string",
+            "example": ""
+          },
+          "numberOfOccupants": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "required": [
+          "houseNumber",
+          "street",
+          "city",
+          "state",
+          "country",
+          "houseType",
+          "numberOfOccupants"
+        ],
+        "xml": {
+          "name": "createHouseModel"
+        }
+      },
+      "UpdateHouseModel": {
+        "type": "object",
+        "properties": {
+          "houseNumber": {
+            "type": "string",
+            "example": ""
+          },
+          "street": {
+            "type": "string",
+            "example": ""
+          },
+          "city": {
+            "type": "string",
+            "example": ""
+          },
+          "state": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "required": [
+          "houseNumber",
+          "street",
+          "city",
+          "state"
+        ],
+        "xml": {
+          "name": "UpdateHouseModel"
         }
       },
       "UpdateShoeModel": {

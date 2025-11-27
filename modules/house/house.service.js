@@ -5,26 +5,25 @@ import handleResponse from "../../utils/index.js";
 export const createNewHouse = async (req, res) => {
   try {
     const {
-        houseNumber,
-        street,
-        city,
-        stste,
-        country,
-        houseType,
-        numberOfOccupants,
-    } =req.body;
+      houseNumber,
+      street,
+      city,
+      state,
+      country,
+      houseType,
+      numberOfOccupants,
+    } = req.body;
 
-    const newHouse= new HouseModel({
-id: uuidv7(),
-houseNumber,
-        street,
-        city,
-        stste,
-        country,
-        houseType,
-        numberOfOccupants,
-        created_at: new Date(),
-      status: 'pending',
+    const newHouse = new HouseModel({
+      id: uuidv7(),
+      houseNumber,
+      street,
+      city,
+      state,
+      country,
+      houseType,
+      numberOfOccupants,
+      createdAt: new Date(),
     });
 
     await newHouse.save();
@@ -37,10 +36,10 @@ houseNumber,
     return res.status(500).json({ message: "internal server error" });
   }
 };
- 
+
 export const getAllHouse = async (_req, res) => {
   try {
-    const allHouse= await HouseModel.find(
+    const allHouse = await HouseModel.find(
       {},
       { _id: 0, __v: 0, updatedAt: 0 }
     );
@@ -66,7 +65,7 @@ export const getAllHouse = async (_req, res) => {
 export const updateHouse = async (req, res) => {
   try {
     const { id } = req.params;
-    const { fees, status } = req.body;
+    const { houseNumber, street, city, state } = req.body;
 
     if (!id) {
       return handleResponse(res, 400, "Missing required field: id", {
@@ -76,7 +75,7 @@ export const updateHouse = async (req, res) => {
 
     const updatedHouse = await HouseModel.findOneAndUpdate(
       { id },
-      { houseNumber, street, city, state, updated_at: new Date() },
+      { houseNumber, street, city, state, updatedAt: new Date() },
       { new: true, projection: { _id: 0, __v: 0, createdAt: 0 } }
     );
 
@@ -100,14 +99,9 @@ export const deleteHouse = async (req, res) => {
     const { id } = req.params;
 
     if (!id) {
-      return handleResponse(
-        res,
-        400,
-        "Missing required field: houseNumber",
-        {
-          success: false,
-        }
-      );
+      return handleResponse(res, 400, "Missing required field: houseNumber", {
+        success: false,
+      });
     }
     const houseToDelete = await HouseModel.findOneAndDelete(
       { id: id },

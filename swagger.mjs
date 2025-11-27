@@ -35,6 +35,11 @@ const doc = {
       name: "Vehicle",
       description: "Vehicle Endpoints",
     },
+        {
+      name: "House",
+      description: "House Endpoints",
+    },
+
     {
       name: "Shoe Collection",
       description: "Shoe Collection Endpoints",
@@ -100,6 +105,21 @@ const doc = {
       $model: "",
       $brand: "",
       $type: "",
+  },
+  createHouseModel: {
+    $houseNumber:"",
+    $street: "",
+    $city: "",
+    $state: "",
+    $country: "",
+    $houseType: "",
+    $numberOfOccupants: "",
+  },
+  UpdateHouseModel: {
+    $houseNumber:"",
+    $street: "",
+    $city: "",
+    $state: "",
   },
     UpdateShoeModel: {
       $shoe_name: "",

@@ -17,7 +17,7 @@ deleteHouse,
      #swagger.parameters['Request Body'] = {
                  in: 'body',
                  required: true, 
-                 schema: { $ref: "#/definitions/HouseModel" }
+                 schema: { $ref: "#/definitions/createHouseModel" }
              }
      #swagger.responses[200] = {
        schema: {
