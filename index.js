@@ -1,12 +1,19 @@
 import express from "express";
 import routes from "./Routes/index.js";
 import { connectDB } from "./config/db.js";
+import { logger } from "./middleware/logger.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerOutput from "./swagger-output.json" with { type: "json" };
 
 const PORT = 8000;
 const app = express();
 
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 connectDB()
 
+//logger midleware
+app.use(logger)
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
@@ -16,6 +23,16 @@ app.get("/", (req, res) => {
 });
 
 app.use(routes);
+
+app.use(
+  "/api/doc",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerOutput, {
+    customCss:
+      ".swagger-ui .opblock .opblock-summary-path-description-wrapper { align-items: center; display: flex; flex-wrap: wrap; gap: 0 10px; padding: 0 10px; width: 100%; }",
+    customCssUrl: CSS_URL,
+  })
+);
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);

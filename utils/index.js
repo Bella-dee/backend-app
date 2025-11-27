@@ -5,3 +5,8 @@ export const successResponse = (res, data, message = "Success", statusCode = 200
         data,
     });
 };
+
+const handleResponse = (res, status, message, data) =>
+  res.status(status).json({ message, data });
+
+export default handleResponse;

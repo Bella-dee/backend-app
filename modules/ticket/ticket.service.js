@@ -1,7 +1,6 @@
 import { uuidv7 } from "uuidv7";
-0;
 import { TicketModel } from "../../models/ticketModel.js";
-import { updateVehicle } from "../vehicle/vehicle.service.js";
+import handleResponse from "../../utils/index.js";
 
 export const createNewTicket = async (req, res) => {
   try {
@@ -11,7 +10,6 @@ export const createNewTicket = async (req, res) => {
       offenderPlateNumber,
       drivingLincenseNumber,
       fees,
-      status,
     } = req.body;
 
     const newTicket = new TicketModel({
@@ -21,7 +19,8 @@ export const createNewTicket = async (req, res) => {
       offenderPlateNumber,
       drivingLincenseNumber,
       fees,
-      status,
+      created_at: new Date(),
+      status: 'pending',
     });
 
     await newTicket.save();
@@ -35,35 +34,51 @@ export const createNewTicket = async (req, res) => {
   }
 };
 
-export const getAllTicket = async (req, res) => {
+export const getAllTicket = async (_req, res) => {
   try {
-    const tickets = await TicketModel.find(
+    const allTicket = await TicketModel.find(
       {},
-      { _id: 0, __v: 0, createdAt: 0, updatedAt: 0 }
+      { _id: 0, __v: 0, updatedAt: 0 }
     );
 
-    return res.status(200).json({
-      message: "Tickets fetched sucessfully",
-      tickets,
+    if (!allTicket) {
+      return handleResponse(res, 200, "No Ticket Found", {
+        success: true,
+        data: {},
+      });
+    }
+    return handleResponse(res, 200, "Ticket data fetched successfully", {
+      success: true,
+      data: allTicket,
     });
   } catch (error) {
-    console.error("Error fetching ticket:", error);
-    return res.status(500).json({ message: "Internal server error" });
+    console.log(error);
+    return handleResponse(res, 500, "Internal server error", {
+      success: false,
+    });
   }
 };
 
 export const updateTicket = async (req, res) => {
   try {
-    const { offenceType, location, fees, status } = req.body;
+    const { id } = req.params;
+    const { fees, status } = req.body;
+
+    if (!id) {
+      return handleResponse(res, 400, "Missing required field: id", {
+        success: false,
+      });
+    }
 
     const updatedTicket = await TicketModel.findOneAndUpdate(
-      { offenceType, location, fees, status },
-      { new: true, projection: { _id: 0, __v: 0, createdAt: 0, updatedAt: 0 } }
+      { id },
+      { fees, status, updated_at: new Date() },
+      { new: true, projection: { _id: 0, __v: 0, createdAt: 0 } }
     );
 
-    if (!updateVehicle) {
+    if (!updatedTicket) {
       return res.status(404).json({
-        message: " Ticket not found  ",
+        message: " Ticket not found",
       });
     }
 
@@ -78,24 +93,35 @@ export const updateTicket = async (req, res) => {
 
 export const deleteTicket = async (req, res) => {
   try {
-    const { drivingLincenseNumber } = req.body;
+    const { id } = req.params;
 
-    const deletedTicket= await TicketModel.findOneAndDelete({ drivingLincenseNumber });
-
-    if (!deletedTicket) {
-      return res.status(404).json({
-        message: "Ticket not found",
-      });
+    if (!id) {
+      return handleResponse(
+        res,
+        400,
+        "Missing required field: drivingLicenseNumber",
+        {
+          success: false,
+        }
+      );
     }
-    return res.status(200).json({
-      message: "Ticket deleted sucessfully",
+    const ticketToDelete = await TicketModel.findOneAndDelete(
+      { id: id },
+      {
+        options: { new: true },
+      }
+    );
+
+    if (!ticketToDelete) {
+      return handleResponse(res, 404, "Ticket not found", { success: false });
+    }
+    return handleResponse(res, 200, "Ticket deleted sucessfully", {
+      success: true,
     });
   } catch (error) {
-    console.error("/Error deleting Ticket:", error);
-    return res.status(500).json({
-      message: "Failed to delete ticket",
-      error: error.message,
+    console.error("Error deleting Ticket:", error);
+    return handleResponse(res, 200, "Internal server error", {
+      sucess: false,
     });
   }
 };
- 

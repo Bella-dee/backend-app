@@ -1,0 +1,1781 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Bella API",
+    "description": "API documentation for Bella collection website",
+    "contact": {
+      "name": "Bella",
+      "email": "okutuboidowu@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User Auth Endpoints"
+    },
+    {
+      "name": "Ticket",
+      "description": "Ticket Endpoints"
+    },
+    {
+      "name": "Vehicle",
+      "description": "Vehicle Endpoints"
+    },
+    {
+      "name": "Shoe Collection",
+      "description": "Shoe Collection Endpoints"
+    }
+  ],
+  "paths": {
+    "/users/create-user": {
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "example": "any"
+                  },
+                  "lastName": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  },
+                  "phoneNumber": {
+                    "example": "any"
+                  },
+                  "address": {
+                    "example": "any"
+                  },
+                  "lga": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/createUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create a new user.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CreateUserModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User created successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User created successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "example": "any"
+                  },
+                  "lastName": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  },
+                  "phoneNumber": {
+                    "example": "any"
+                  },
+                  "address": {
+                    "example": "any"
+                  },
+                  "lga": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/update-user/{userId}": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update a new user.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CreateUserModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User updated successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User updated successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstname": {
+                    "example": "any"
+                  },
+                  "lastName": {
+                    "example": "any"
+                  },
+                  "address": {
+                    "example": "any"
+                  },
+                  "lga": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/get-all-users": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all users.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Users data fetched successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "example": [],
+                      "items": {}
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Users data fetched successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "example": [],
+                      "items": {}
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/delete-user/{userId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete a user.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User deleted successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User deleted successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/albums/get-albums": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/albums/get-single-user/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-fullname/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-username/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-email/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-street/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-phone/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-address/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-city/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-website/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-companyName/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-catchPhrase/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/albums/get-single-user-bs/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comment/get-comment": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comment/get-single-user-comment-name/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comment/get-single-user-comment-email/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comment/get-single-user-comment-body/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/photo/get-photos": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/photo/get-single-user-photo-title/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/photo/get-single-user-photo-url/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/photo/get-single-user-photo-thumbNailUrl/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/todosget-todos": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/todos/get-single-user-todos-title": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/todos/get-single-user-completed": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/vehicle/create-vehicle": {
+      "post": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Create a new Vehicle.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CreateVehicleModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Vehicle created successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Vehicle created successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plateNumber": {
+                    "example": "any"
+                  },
+                  "color": {
+                    "example": "any"
+                  },
+                  "model": {
+                    "example": "any"
+                  },
+                  "brand": {
+                    "example": "any"
+                  },
+                  "type": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicle/get-all-vehicles": {
+      "get": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Get all vehicle.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Vehicle data fetched successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "example": [],
+                      "items": {}
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Vehicle data fetched successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "example": [],
+                      "items": {}
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicle/get-single-vehicle/{plateNumber}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "plateNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/vehicle/get-single-vehicle": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/vehicle/update-vehicle": {
+      "patch": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Update a vehicle.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UpdateVehicleModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Vehicle updated successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Vehicle updated successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plateNumber": {
+                    "example": "any"
+                  },
+                  "color": {
+                    "example": "any"
+                  },
+                  "model": {
+                    "example": "any"
+                  },
+                  "brand": {
+                    "example": "any"
+                  },
+                  "type": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicle/delete-vehicle": {
+      "delete": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Delete a vehicle.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Vehicle deleted successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Vehicle deleted successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ticket/create-ticket": {
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Create a new ticket.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CreateTicketModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Ticket created successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Ticket created successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "offenceType": {
+                    "example": "any"
+                  },
+                  "location": {
+                    "example": "any"
+                  },
+                  "offenderPlateNumber": {
+                    "example": "any"
+                  },
+                  "drivingLincenseNumber": {
+                    "example": "any"
+                  },
+                  "fees": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ticket/get-all-ticket": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Get all ticket.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Ticket data fetched successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "example": [],
+                      "items": {}
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Ticket data fetched successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "example": [],
+                      "items": {}
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ticket/update-ticket/{id}": {
+      "patch": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Update a ticket.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UpdateTicketModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User updated successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User updated successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fees": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ticket/delete-ticket/{id}": {
+      "delete": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Delete a ticket.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Ticket deleted successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Ticket deleted successfully"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserLoginModel": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "mailnator@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "Password123#"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "xml": {
+          "name": "UserLoginModel"
+        }
+      },
+      "UserVerifyEmailModel": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 333333
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "xml": {
+          "name": "UserVerifyEmailModel"
+        }
+      },
+      "UserForgotPasswordModel": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "mail@mail.com"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "xml": {
+          "name": "UserForgotPasswordModel"
+        }
+      },
+      "UserResetPasswordModel": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 999999
+          },
+          "new_password": {
+            "type": "string",
+            "example": "Password789#"
+          }
+        },
+        "required": [
+          "code",
+          "new_password"
+        ],
+        "xml": {
+          "name": "UserResetPasswordModel"
+        }
+      },
+      "ChangePasswordModel": {
+        "type": "object",
+        "properties": {
+          "oldPassword": {
+            "type": "string",
+            "example": "Password123#"
+          },
+          "newPassword": {
+            "type": "string",
+            "example": "Password789#"
+          }
+        },
+        "required": [
+          "oldPassword",
+          "newPassword"
+        ],
+        "xml": {
+          "name": "ChangePasswordModel"
+        }
+      },
+      "CreateUserModel": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": ""
+          },
+          "lastName": {
+            "type": "string",
+            "example": ""
+          },
+          "email": {
+            "type": "string",
+            "example": ""
+          },
+          "address": {
+            "type": "string",
+            "example": ""
+          },
+          "lga": {
+            "type": "string",
+            "example": ""
+          },
+          "phoneNumber": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "address",
+          "lga",
+          "phoneNumber"
+        ],
+        "xml": {
+          "name": "CreateUserModel"
+        }
+      },
+      "CreateShoeModel": {
+        "type": "object",
+        "properties": {
+          "shoe_name": {
+            "type": "string",
+            "example": ""
+          },
+          "description": {
+            "type": "string",
+            "example": ""
+          },
+          "price": {
+            "type": "number",
+            "example": 0
+          },
+          "product_color": {
+            "type": "string",
+            "example": ""
+          },
+          "product_size": {
+            "type": "string",
+            "example": ""
+          },
+          "product_image": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "required": [
+          "shoe_name",
+          "description",
+          "price",
+          "product_color",
+          "product_size",
+          "product_image"
+        ],
+        "xml": {
+          "name": "CreateShoeModel"
+        }
+      },
+      "UpdateTicketModel": {
+        "type": "object",
+        "properties": {
+          "fees": {
+            "type": "string",
+            "example": ""
+          },
+          "status": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "required": [
+          "fees",
+          "status"
+        ],
+        "xml": {
+          "name": "UpdateTicketModel"
+        }
+      },
+      "updateVehicleModel": {
+        "type": "object",
+        "properties": {
+          "plateNumber": {
+            "type": "string",
+            "example": ""
+          },
+          "color": {
+            "type": "string",
+            "example": ""
+          },
+          "model": {
+            "type": "string",
+            "example": ""
+          },
+          "brand": {
+            "type": "string",
+            "example": ""
+          },
+          "type": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "required": [
+          "plateNumber",
+          "color",
+          "model",
+          "brand",
+          "type"
+        ],
+        "xml": {
+          "name": "updateVehicleModel"
+        }
+      },
+      "UpdateShoeModel": {
+        "type": "object",
+        "properties": {
+          "shoe_name": {
+            "type": "string",
+            "example": ""
+          },
+          "description": {
+            "type": "string",
+            "example": ""
+          },
+          "price": {
+            "type": "number",
+            "example": 0
+          },
+          "product_color": {
+            "type": "string",
+            "example": ""
+          },
+          "product_size": {
+            "type": "string",
+            "example": ""
+          },
+          "product_image": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "required": [
+          "shoe_name",
+          "description",
+          "price",
+          "product_color",
+          "product_size",
+          "product_image"
+        ],
+        "xml": {
+          "name": "UpdateShoeModel"
+        }
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "description": "Value: Bearer {jwt}",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "producces": [
+    "application/json"
+  ],
+  "security": [
+    {
+      "jwtAuth": []
+    }
+  ]
+}
