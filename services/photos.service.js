@@ -1,5 +1,34 @@
-export const getPhotos = async (req, res) => {
-  const id = req.params?.id;
+import { uuidv7 } from "uuidv7";
+import { PhotosModel } from "../models/photosModel.js";
+
+export const createNewPhotos= async (req, res) => {
+  try {
+    const {
+      title,
+      url,
+      thumbnailUrl,
+    } = req.body;
+
+    const newPhotos = new PhotosModel({
+      id: uuidv7(),
+    title,
+    url,
+    thumbnailUrl,
+      createdAt: new Date(),
+    });
+
+    await newPhotos.save();
+
+    return res
+      .status(201)
+      .json({ message: " New Photos created succesfully", house: newPhotos });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "internal server error" });
+  }
+};
+
+export const getPhotos = async (_, res) => {
   try {
     const response = await fetch(`https://jsonplaceholder.typicode.com/photos`);
     const data = await response.json();

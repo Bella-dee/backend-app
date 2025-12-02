@@ -10,6 +10,15 @@ getThumbNailUrl,
 const route = Router();
 
 route.get("/get-photos", async (req,res) => {
+     /* #swagger.tags = ["Photos"];
+     #swagger.summary = "Get all photo.";
+     #swagger.responses[200] = {
+       schema: {
+         message: "Photos data fetched successfully",
+         success: true,
+         data: [],
+       },
+     }; */
  await getPhotos(req,res);   
 });
 
